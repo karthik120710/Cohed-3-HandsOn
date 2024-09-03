@@ -25,13 +25,24 @@ program
 
   program
   .command('add <todo>')
-  .description('Add a new todo')
+  .description('Add todo in JSON')
   .action((todo) => {
     const todos = loadTodo();
     todos.push({ text: todo, done: false });
     saveTodo(todos);
     console.log('Todo added successfully!');
   });
+
+
+  program
+  .command('delete <index>')
+  .description('delete todo in json')
+  .action((index) => {
+    const todo =loadTodo();
+    todo.splice(index-1,1);
+    saveTodo(todo);
+    console.log("Deleted Todo In json");
+  })
 
 // ... other commands
 
