@@ -44,7 +44,23 @@ program
     console.log("Deleted Todo In json");
   })
 
-// ... other commands
+  // status change in todo
+ // Command to mark a todo as done
+program
+.command('done <index>')
+.description('Mark a todo as done')
+.action((index) => {
+const todos = loadTodo();
+if (index < 1 || index > todos.length) {
+    console.error('Invalid index. Please enter a valid index.');
+    return;
+  }
+
+todos[index - 1].done = true;
+saveTodo(todos);
+console.log('Todo marked as done!');
+});
+
 
 // Parse the command-line arguments
 program.parse(process.argv);
